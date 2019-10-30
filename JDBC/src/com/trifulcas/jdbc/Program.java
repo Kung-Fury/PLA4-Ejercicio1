@@ -13,7 +13,7 @@ public class Program {
 		String cadConexion = "jdbc:mysql://localhost:3306/";
 		String bd = "empresa";
 		String usuario = "root";
-		String pass = "C3df32ea";
+		String pass = "";
 		MenuRegistros menuRegistros = new MenuRegistros();
 		try {
 			Class.forName("com.mysql.jdbc.Driver").getDeclaredConstructor().newInstance();
@@ -33,7 +33,7 @@ public class Program {
 				res1 = Integer.parseInt(sc.nextLine());
 				if (res1 == 1) {	// PRODUCTO
 					do {
-					System.out.println("Escoja opci髇 de la tabla PRODUCTOS:");
+					System.out.println("Escoja opci贸n de la tabla PRODUCTOS:");
 					menuRegistros.mostrarMenuRegistros();
 					res2 = Integer.parseInt(sc.nextLine());
 						switch (res2) {
@@ -44,7 +44,7 @@ public class Program {
 								System.out.println(rs.getInt("IDProducto") + " | " + rs.getString("ProdNombre") + " | " +  rs.getBigDecimal("ProdPrecioUd"));
 							break;
 						
-						case 2: // A馻dir registro
+						case 2: // A帽adir registro
 							System.out.print("Introduzca el nombre del nuevo producto: ");
 							nombre = sc.nextLine();
 							System.out.print("Introduzca el precio nuevo producto: ");
@@ -53,7 +53,7 @@ public class Program {
 							pstmt.setString(1, nombre);
 							pstmt.setBigDecimal(2, precio);
 							pstmt.executeUpdate();
-							System.out.println("Producto a馻dido");
+							System.out.println("Producto a帽adido");
 							break;
 						
 						case 3: // Modificar registro
@@ -90,7 +90,7 @@ public class Program {
 					String NIF;
 					String direccion;
 					do {
-					System.out.println("Escoja opci髇 de la tabla PROVEEDORES:");
+					System.out.println("Escoja opci贸n de la tabla PROVEEDORES:");
 					menuRegistros.mostrarMenuRegistros();
 					res3 = Integer.parseInt(sc.nextLine());
 					
@@ -101,19 +101,19 @@ public class Program {
 							while (rs.next())
 								System.out.println(rs.getInt("IDProveedor") + " | " + rs.getString("ProvNIF") + " | " + rs.getString("ProvNombre") + " | " + rs.getString("ProvDireccion"));
 							break;
-						case 2: // A馻dir registro
+						case 2: // A帽adir registro
 							System.out.print("Introduzca el nombre del nuevo proveedor: ");
 							nombre = sc.nextLine();
 							System.out.print("Introduzca el NIF nuevo proveedor: ");
 							NIF = sc.nextLine();
-							System.out.print("Introduzca la direcci髇 del nuevo proveedor: ");
+							System.out.print("Introduzca la direcci贸n del nuevo proveedor: ");
 							direccion = sc.nextLine();
 							pstmt = con.prepareStatement("insert into proveedor (ProvNIF, ProvNombre, ProvDireccion) values(?,?,?)");
 							pstmt.setString(1, NIF);
 							pstmt.setString(2, nombre);
 							pstmt.setString(3, direccion);
 							pstmt.executeUpdate();
-							System.out.println("Proveedor a馻dido");
+							System.out.println("Proveedor a帽adido");
 							break;
 							
 						case 3: // Modificar registro
@@ -123,7 +123,7 @@ public class Program {
 							NIF = sc.nextLine();
 							System.out.print("Introduzca el nuevo nombre del proveedor: ");
 							nombre = sc.nextLine();
-							System.out.print("Introduzca la nueva direcci髇 del proveedor: ");
+							System.out.print("Introduzca la nueva direcci贸n del proveedor: ");
 							direccion = sc.nextLine();
 							pstmt = con.prepareStatement("update proveedor set ProvNIF=?, ProvNombre=?, ProvDireccion=? where IDProveedor=?");
 							pstmt.setString(1, NIF);
